@@ -204,7 +204,7 @@ button { color: inherit; }
 .lineup-image { position: relative; display: block; width: auto; height: auto; max-width: 100%; max-height: 86vh; max-height: 86dvh; }
 /* Sits in the clear beige column on the left of the photo, level with the cans,
    so it reads as part of the shot rather than a label stuck underneath it. */
-.lineup-caption { position: absolute; z-index: 2; left: clamp(1.25rem, 4vw, 4.5rem); top: 50%; transform: translateY(-50%); max-width: 20ch; }
+.lineup-caption { position: absolute; z-index: 2; left: clamp(2rem, 9vw, 10rem); top: 50%; transform: translateY(-50%); max-width: 20ch; }
 .lineup-caption h2 { margin: .25rem 0 .3rem; font-family: var(--font-body); font-weight: 500; font-size: clamp(.95rem, 1.45vw, 1.35rem); line-height: 1.1; letter-spacing: -.02em; white-space: nowrap; }
 .lineup-note { margin: 0; font-size: clamp(.6rem, .82vw, .75rem); line-height: 1.35; opacity: .6; }
 
@@ -276,11 +276,14 @@ button { color: inherit; }
      quarter clockwise. Its width before rotation becomes the on-screen height,
      so it is capped by both the viewport height and, through the 1.777 aspect
      ratio, the viewport width. That is the largest it can be without cropping. */
-  .lineup-image { position: absolute; top: 50%; left: 50%; width: min(88vh, 158vw); width: min(88dvh, 158vw); height: auto; max-width: none; max-height: none; transform: translate(-50%, -50%) rotate(90deg); }
+  .lineup-image { position: absolute; top: 50%; left: 50%; width: min(100vh, 177.6vw); width: min(100dvh, 177.6vw); height: auto; max-width: none; max-height: none; transform: translate(-50%, -50%) rotate(90deg); }
   /* The photo shrinks a little so the caption sits in a clear band at the foot
      of the slide rather than on top of the cans. */
-  .lineup-caption { left: 1.25rem; right: 1.25rem; top: auto; bottom: max(3.25rem, env(safe-area-inset-bottom)); transform: none; max-width: none; }
-  .lineup-caption h2 { font-size: 1rem; margin: .2rem 0 .25rem; }
+  /* Turned with the photo and set in the clear strip along its top edge, which
+     the quarter turn brings to the top of the screen. Reads with the image once
+     the phone is turned, instead of sitting sideways beneath it. */
+  .lineup-caption { left: 50%; right: auto; top: 50%; bottom: auto; width: 62dvh; max-width: none; transform: translate(-50%, -50%) rotate(90deg) translateX(-31dvh); }
+  .lineup-caption h2 { font-size: 1.05rem; margin: .2rem 0 .25rem; }
   .lineup-note { font-size: .7rem; }
   /* Rotating sends the photo's left edge to the top of the screen and its right
      edge to the bottom, so the bands above and below carry those two colours. */
