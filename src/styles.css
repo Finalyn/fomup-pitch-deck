@@ -216,7 +216,10 @@ button { color: inherit; }
   .flow-arrow::after { right: auto; left: -2.75px; top: auto; bottom: -1px; border-left: 3.5px solid transparent; border-right: 3.5px solid transparent; border-top: 6px solid var(--foreground); border-bottom: none; }
   .format-cta { margin-top: .7rem; }
   .keywords span { font-size: min(5.2vh, 8.6vw); line-height: .9; }
-  .flavor-stage img { max-height: 88%; }
+  /* Deliberate full bleed crop on phones: the can is sized by the width of the
+     slide and anchored to the top, so it runs off the bottom behind the flavour
+     name instead of being fitted into the leftover space. */
+  .flavor-stage img { inset: 0 auto auto 50%; margin: 0; transform: translateX(-50%); width: 100%; height: auto; max-width: none; max-height: none; }
   /* The range photo is landscape and the slide is portrait, so it is turned a
      quarter clockwise. Its width before rotation becomes the on-screen height,
      so it is capped by both the viewport height and, through the 1.777 aspect
