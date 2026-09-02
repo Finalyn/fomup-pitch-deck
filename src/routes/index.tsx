@@ -370,9 +370,11 @@ function PitchDeck() {
 
         <Slide className="keywords-slide">
           <div className="keywords" aria-label="FOMUP in keywords">
-            {keywords.map((word) => (
-              <span key={word}>{word} </span>
-            ))}
+            <p className="keywords-wall">
+              {keywords.map((word) => (
+                <span key={word}>{word} </span>
+              ))}
+            </p>
           </div>
         </Slide>
 
