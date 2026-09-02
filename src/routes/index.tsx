@@ -44,6 +44,9 @@ export const Route = createFileRoute("/")({
 
 const TOTAL_SLIDES = 16;
 const DARK_SLIDES = new Set([7, 9]);
+// The range photo carries its own FOMUP lockup, so the fixed one is dropped
+// there on phones, where the two would otherwise sit on top of each other.
+const BARE_SLIDES = new Set([11]);
 const IDEA_SLIDE = 1;
 
 function Slide({ children, className = "" }: { children: ReactNode; className?: string }) {
@@ -240,7 +243,7 @@ function PitchDeck() {
 
   return (
     <main
-      className={`deck${DARK_SLIDES.has(active) ? " deck-inverted" : ""}`}
+      className={`deck${DARK_SLIDES.has(active) ? " deck-inverted" : ""}${BARE_SLIDES.has(active) ? " deck-bare" : ""}`}
       aria-label="FOMUP pitch deck"
       onTouchStart={(event) => {
         touchStart.current = event.touches[0]?.clientX ?? null;
@@ -423,8 +426,8 @@ function PitchDeck() {
               <p className="eyebrow">The look</p>
               <h2>Premium, and still fun.</h2>
               <p className="lineup-note">
-                Visual mock-up. The cap and the dispensing head <br className="note-break" />
-                are still being reworked.
+                Visual mock-up. The cap and the dispensing <br className="note-break" />
+                head are still being reworked.
               </p>
             </figcaption>
           </figure>

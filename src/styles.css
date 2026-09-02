@@ -217,7 +217,7 @@ button { color: inherit; }
    19.5%: the first can enters the frame at 24%, measured on the pixels. */
 .lineup-caption { position: absolute; z-index: 2; left: 3.41%; top: 50%; transform: translateY(-50%); max-width: 19.5%; }
 .lineup-caption h2 { margin: .25rem 0 .3rem; font-family: var(--font-body); font-weight: 500; font-size: clamp(.95rem, 1.45vw, 1.35rem); line-height: 1.1; letter-spacing: -.02em; white-space: nowrap; }
-.lineup-note { margin: 0; font-size: clamp(.58rem, .72vw, .72rem); line-height: 1.35; opacity: .6; }
+.lineup-note { margin: 0; font-size: clamp(.6rem, .82vw, .75rem); line-height: 1.35; opacity: .6; }
 
 .contact-slide .slide-inner { display: flex; flex-direction: column; padding-top: clamp(1.5rem, 7vh, 6rem); padding-bottom: clamp(3.75rem, 11vh, 7rem); }
 .contact-slide .eyebrow, .contact-slide h1, .contact-line, .contact-details { position: relative; z-index: 1; }
@@ -288,7 +288,7 @@ button { color: inherit; }
      quarter clockwise. Its width before rotation becomes the on-screen height,
      so it is capped by both the viewport height and, through the 1.777 aspect
      ratio, the viewport width. That is the largest it can be without cropping. */
-  .lineup-image { position: absolute; top: 50%; left: 50%; width: min(100vh, 177.6vw); width: min(100dvh, 177.6vw); height: auto; max-width: none; max-height: none; transform: translate(-50%, -50%) rotate(90deg); }
+  .lineup-image { position: absolute; top: 50%; left: 50%; width: min(88vh, 158vw); width: min(88dvh, 158vw); height: auto; max-width: none; max-height: none; transform: translate(-50%, -50%) rotate(90deg); }
   /* The photo shrinks a little so the caption sits in a clear band at the foot
      of the slide rather than on top of the cans. */
   /* Turned with the photo and set in the clear strip along its top edge, which
@@ -296,7 +296,9 @@ button { color: inherit; }
      the phone is turned, instead of sitting sideways beneath it. */
   .lineup-frame { position: static; width: auto; aspect-ratio: auto; }
   .note-break { display: none; }
-  .lineup-caption { left: 50%; right: auto; top: 50%; bottom: auto; width: 62dvh; max-width: none; transform: translate(-50%, -50%) rotate(90deg) translateX(-31dvh); }
+  /* Horizontal, in the band the photo leaves free at the foot of the slide. */
+  .lineup-caption { left: 1.25rem; right: 1.25rem; top: auto; bottom: max(3.25rem, env(safe-area-inset-bottom)); width: auto; max-width: none; transform: none; }
+  .deck-bare .deck-wordmark { opacity: 0; }
   .lineup-caption h2 { font-size: 1.05rem; margin: .2rem 0 .25rem; }
   .lineup-note { font-size: .7rem; }
   /* Rotating sends the photo's left edge to the top of the screen and its right
