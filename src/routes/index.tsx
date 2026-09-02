@@ -10,12 +10,12 @@ import pinacolada from "@/assets/fomup-pinacolada-transparent.png";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "FOMUP, Investor Presentation" },
+      { title: "FOMUP, Pitch Deck" },
       {
         name: "description",
         content: "FOMUP is Swiss-made drinkable cocktail foam, launching in the United States.",
       },
-      { property: "og:title", content: "FOMUP, Investor Presentation" },
+      { property: "og:title", content: "FOMUP, Pitch Deck" },
       {
         property: "og:description",
         content: "Meet FOMUP: a sensorial, shareable and unforgettable drink format.",
@@ -24,11 +24,12 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: InvestorDeck,
+  component: PitchDeck,
 });
 
 const TOTAL_SLIDES = 14;
 const DARK_SLIDES = new Set([5, 7]);
+const IDEA_SLIDE = 1;
 
 function Slide({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
@@ -139,15 +140,39 @@ const collaborations = [
   { kind: "Creators & athletes", note: "Reach the 16 to 35 audience directly" },
 ];
 
-function InvestorDeck() {
+function PitchDeck() {
   const [active, setActive] = useState(0);
+  // Slide 2 cycles through the four cans before it lets the deck move on.
+  const [ideaStep, setIdeaStep] = useState(0);
   const touchStart = useRef<number | null>(null);
 
   const goTo = useCallback((index: number) => {
     setActive(Math.max(0, Math.min(TOTAL_SLIDES - 1, index)));
+    setIdeaStep(0);
   }, []);
-  const previous = useCallback(() => setActive((value) => Math.max(0, value - 1)), []);
-  const next = useCallback(() => setActive((value) => Math.min(TOTAL_SLIDES - 1, value + 1)), []);
+
+  const previous = useCallback(() => {
+    if (active === IDEA_SLIDE && ideaStep > 0) {
+      setIdeaStep(ideaStep - 1);
+      return;
+    }
+    if (active > 0) {
+      const target = active - 1;
+      setActive(target);
+      setIdeaStep(target === IDEA_SLIDE ? flavors.length - 1 : 0);
+    }
+  }, [active, ideaStep]);
+
+  const next = useCallback(() => {
+    if (active === IDEA_SLIDE && ideaStep < flavors.length - 1) {
+      setIdeaStep(ideaStep + 1);
+      return;
+    }
+    if (active < TOTAL_SLIDES - 1) {
+      setActive(active + 1);
+      setIdeaStep(0);
+    }
+  }, [active, ideaStep]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -163,7 +188,7 @@ function InvestorDeck() {
   return (
     <main
       className={`deck${DARK_SLIDES.has(active) ? " deck-inverted" : ""}`}
-      aria-label="FOMUP investor presentation"
+      aria-label="FOMUP pitch deck"
       onTouchStart={(event) => {
         touchStart.current = event.touches[0]?.clientX ?? null;
       }}
@@ -184,7 +209,7 @@ function InvestorDeck() {
             FOMUP
           </div>
           <p className="title-tagline">Drink the foam.</p>
-          <p className="corner-note">Investor presentation</p>
+          <p className="corner-note">Pitch deck</p>
           <p className="corner-location">Swiss-made / USA launch</p>
         </Slide>
 
@@ -196,12 +221,30 @@ function InvestorDeck() {
               A dense, aerated mousse served straight from a pressurized can.
             </p>
           </div>
-          <ProductImage src={espresso} alt="FOMUP Espresso Martini can" className="idea-product" />
+          <div className="idea-stage">
+            <ProductImage
+              key={flavors[ideaStep]?.key}
+              src={flavors[ideaStep]?.src ?? espresso}
+              alt={`FOMUP ${flavors[ideaStep]?.name ?? "Espresso Martini"} can`}
+              className="idea-product"
+            />
+            <div className="idea-steps" aria-hidden="true">
+              {flavors.map((flavor, index) => (
+                <span key={flavor.key} className={index === ideaStep ? "active" : ""} />
+              ))}
+            </div>
+          </div>
         </Slide>
-
         <Slide className="video-slide">
           <div className="video-frame">
-            <video src="/fomup-demo-video.mp4" controls playsInline muted loop preload="metadata" />
+            <video
+              src={`${import.meta.env.BASE_URL}fomup-demo-video.mp4`}
+              controls
+              playsInline
+              muted
+              loop
+              preload="metadata"
+            />
           </div>
           <p className="video-caption">First demo</p>
         </Slide>
@@ -335,21 +378,18 @@ function InvestorDeck() {
         <Slide className="contact-slide">
           <p className="eyebrow">Let&apos;s talk</p>
           <h1>
-            Investor
+            Get in
             <br />
-            inquiries
+            touch
           </h1>
           <p className="contact-line">
             Swiss-made drinkable cocktail foam, launching in the United States.
           </p>
           <div className="contact-details">
-            <a className="email-link" href="mailto:invest@fomup.com">
-              invest@fomup.com
+            <a className="email-link" href="mailto:fomup@finalyn.com">
+              fomup@finalyn.com
             </a>
-            <a
-              className="deck-button"
-              href="mailto:invest@fomup.com?subject=FOMUP%20investment%20conversation"
-            >
+            <a className="deck-button" href="mailto:fomup@finalyn.com?subject=FOMUP%20pitch%20deck">
               Start a conversation <ArrowRight />
             </a>
           </div>
