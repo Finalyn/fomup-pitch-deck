@@ -94,9 +94,10 @@ const routes = [
 ] as const;
 
 const homeSteps = [
-  { number: "01", title: "Buy the can", note: "250 ml, four flavours" },
+  { number: "01", title: "Own it", note: "One can, four flavours" },
   { number: "02", title: "Chill it", note: "Four hours in the fridge" },
-  { number: "03", title: "Press", note: "The foam comes straight out of the can" },
+  { number: "03", title: "Shake it", note: "A few seconds in the hand" },
+  { number: "04", title: "Drink it", note: "Foam straight from the can" },
 ] as const;
 
 const serveSteps = [
@@ -328,7 +329,7 @@ function PitchDeck() {
             No bar, no siphon, no skill. A can in the fridge and friends who have never seen a
             cocktail come out like this.
           </p>
-          <div className="format-flow" aria-label="Three-step home flow">
+          <div className="format-flow" aria-label="Four-step home flow">
             {homeSteps.map(({ number, title, note }, index) => (
               <div className="flow-item" key={number}>
                 <figure className="flow-step">

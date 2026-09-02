@@ -139,14 +139,16 @@ button { color: inherit; }
 
 
 .routes-slide .slide-inner, .home-slide .slide-inner { display: flex; flex-direction: column; align-items: flex-start; padding-top: clamp(1.3rem, 5vh, 4rem); }
-.routes-grid { flex: 1; min-height: 0; width: 100%; margin-top: clamp(1rem, 3.5vh, 2.5rem); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 4vw, 4rem); align-content: center; }
-.routes-grid article { min-width: 0; display: flex; flex-direction: column; gap: .35rem; border-top: 2px solid var(--foreground); padding-top: clamp(.7rem, 2vh, 1.2rem); }
-.route-number { font-size: clamp(.6rem, .95vw, .82rem); font-weight: 800; letter-spacing: .16em; opacity: .5; }
+.routes-grid { flex: 1; min-height: 0; width: 100%; margin-top: clamp(1rem, 3.5vh, 2.5rem); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.75rem, 5vw, 5rem); align-content: center; }
+.routes-grid article { min-width: 0; display: flex; flex-direction: column; gap: .3rem; }
+/* The big ghosted numeral carries the hierarchy, so the rule above each block
+   is no longer needed and the slide breathes instead of being chopped up. */
+.route-number { font-family: var(--font-display); font-size: clamp(2.6rem, 7vw, 6rem); line-height: .78; letter-spacing: -.06em; opacity: .16; }
 .routes-grid h2 { margin: 0; font-family: var(--font-display); font-size: clamp(1.8rem, 5vw, 4.5rem); line-height: .9; letter-spacing: -.05em; }
-.route-line { margin: 0 0 .5rem; font-size: clamp(.85rem, 1.4vw, 1.25rem); line-height: 1.25; }
+.route-line { margin: .15rem 0 .75rem; max-width: 26ch; font-size: clamp(.85rem, 1.4vw, 1.25rem); line-height: 1.25; }
 .routes-grid ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .35rem; }
 .routes-grid li { position: relative; padding-left: 1rem; font-size: clamp(.72rem, 1.05vw, 1rem); line-height: 1.25; opacity: .7; }
-.routes-grid li::before { content: ""; position: absolute; left: 0; top: .55em; width: .45rem; height: 1px; background: currentColor; }
+.routes-grid li::before { content: ""; position: absolute; left: 0; top: .5em; width: .32rem; height: .32rem; border-radius: 50%; background: currentColor; opacity: .55; }
 .audience-slide .slide-inner, .collab-slide .slide-inner, .drinker-slide .slide-inner { display: flex; flex-direction: column; padding-top: clamp(1.3rem, 5vh, 4rem); }
 .clean-list { flex: 1; min-height: 0; margin: clamp(.75rem, 3vh, 2rem) 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; justify-content: center; }
 .clean-list li { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto auto; column-gap: clamp(.75rem, 2vw, 1.6rem); align-items: center; padding: clamp(.6rem, 2vh, 1.4rem) 0; border-bottom: 1px solid color-mix(in oklch, var(--foreground) 20%, transparent); }
@@ -227,7 +229,8 @@ button { color: inherit; }
   .flow-arrow::after { right: auto; left: -2.75px; top: auto; bottom: -1px; border-left: 3.5px solid transparent; border-right: 3.5px solid transparent; border-top: 6px solid var(--foreground); border-bottom: none; }
   .format-cta { margin-top: .7rem; }
   .keywords span { font-size: min(5.2vh, 8.6vw); line-height: .9; }
-  .routes-grid { grid-template-columns: 1fr; gap: 1.15rem; }
+  .routes-grid { grid-template-columns: 1fr; gap: 1.75rem; align-content: center; }
+  .route-number { font-size: clamp(2.2rem, 11vw, 3.6rem); }
   .routes-grid h2 { font-size: clamp(1.6rem, 8vw, 2.4rem); }
   .route-line { font-size: .9rem; margin-bottom: .35rem; }
   .routes-grid li { font-size: .78rem; }
