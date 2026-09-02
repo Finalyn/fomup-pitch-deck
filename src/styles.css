@@ -95,20 +95,26 @@ button { color: inherit; }
 .format-slide .slide-inner { padding-top: clamp(2rem, 7vh, 6rem); display: flex; flex-direction: column; align-items: flex-start; }
 .format-headline { margin: .4rem 0 .6rem; font-family: var(--font-display); font-size: clamp(2.4rem, 6.2vw, 7rem); line-height: .9; letter-spacing: -.055em; }
 .format-sub { max-width: 44ch; margin: 0; font-size: clamp(1rem, 1.7vw, 1.45rem); line-height: 1.25; opacity: .9; }
-.format-flow { width: 100%; margin-top: clamp(1.75rem, 7vh, 5rem); display: flex; align-items: center; justify-content: center; gap: clamp(.6rem, 2.6vw, 2.5rem); }
-.flow-item { flex: 1 1 0; min-width: 0; max-width: 16rem; display: flex; align-items: center; gap: clamp(.6rem, 2.6vw, 2.5rem); }
+/* flex: 1 makes the flow absorb the space between the intro and the closing
+   line, so the steps sit in the middle of the slide instead of hanging just
+   under the paragraph. */
+.format-flow { flex: 1; min-height: 0; width: 100%; margin-top: clamp(1.5rem, 5vh, 3rem); display: flex; align-items: center; justify-content: center; gap: clamp(.6rem, 2.6vw, 2.5rem); }
+.flow-item { flex: 1 1 0; min-width: 0; max-width: 19rem; display: flex; align-items: center; gap: clamp(.6rem, 2.6vw, 2.5rem); }
 .flow-step { flex: 1; min-width: 0; margin: 0; padding: 0; border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: clamp(.35rem, 1.1vh, .7rem); }
 .flow-step .step-number { display: grid; place-items: center; width: 2.6em; height: 2.6em; border: .16em solid currentColor; border-radius: 50%; font-size: clamp(.62rem, .95vw, .84rem); font-weight: 800; letter-spacing: .02em; line-height: 1; }
-.flow-step strong { font-family: var(--font-display); font-size: clamp(1.4rem, 3.4vw, 3.4rem); line-height: .92; letter-spacing: -.045em; }
-.step-note { max-width: 16ch; font-size: clamp(.7rem, 1.05vw, 1rem); line-height: 1.2; text-align: center; opacity: .75; }
+.flow-step strong { font-family: var(--font-display); font-size: clamp(1.3rem, 2.7vw, 2.8rem); line-height: .92; letter-spacing: -.045em; white-space: nowrap; }
+.step-note { max-width: 18ch; font-size: clamp(.7rem, 1.05vw, 1rem); line-height: 1.25; text-align: center; text-wrap: balance; opacity: .75; }
 .flow-arrow { width: clamp(.9rem, 3vw, 2.5rem); height: 1.5px; flex: 0 0 auto; background: var(--foreground); position: relative; }
 .flow-arrow::after { content: ""; position: absolute; right: -1px; top: -2.75px; border-left: 6px solid var(--foreground); border-top: 3.5px solid transparent; border-bottom: 3.5px solid transparent; }
 .format-cta { margin: auto auto 0; align-self: center; text-align: center; font-size: clamp(.75rem, 1.1vw, 1rem); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; opacity: .7; }
 
 .keywords-slide, .keywords-slide .slide-inner { background: var(--gold); }
 .keywords-slide .slide-inner { padding: 0 1.2vw; display: grid; align-items: center; }
-.keywords { display: flex; flex-direction: column; justify-content: center; height: 100%; overflow: hidden; }
-.keywords span { display: block; font-family: var(--font-display); font-size: min(5.4vh, 6.2vw); line-height: .88; letter-spacing: -.06em; white-space: nowrap; }
+/* On wide screens the words run as one justified block so they reach both
+   edges on every line and cover the whole yellow page. Phones keep one word
+   per line, where a justified wall would break into ragged fragments. */
+.keywords { display: grid; align-content: center; height: 100%; overflow: hidden; text-align: justify; text-align-last: justify; hyphens: none; }
+.keywords span { font-family: var(--font-display); font-size: min(13.5vh, 7.6vw); line-height: .86; letter-spacing: -.06em; white-space: nowrap; }
 
 .flavor-slide, .flavor-slide .slide-inner { background: var(--flavor-bg); color: var(--flavor-ink); }
 .flavor-espresso { --flavor-bg: oklch(.26 .055 55); --flavor-ink: oklch(.96 .022 87); }
@@ -131,7 +137,13 @@ button { color: inherit; }
   .flavor-slide .slide-inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); column-gap: 3vw; align-items: center; }
   .flavor-head { grid-column: 1 / -1; }
   .flavor-foot { grid-column: 1; grid-row: 2; align-self: center; }
-  .flavor-stage { grid-column: 2; grid-row: 2; }
+  /* align-items: center leaves this item sized by its content, and its only child
+     is absolutely positioned, so without stretch the stage collapses to zero and
+     the can disappears entirely. That is why desktop showed no product at all. */
+  .flavor-stage { grid-column: 2; grid-row: 2; align-self: stretch; }
+  /* Same full bleed crop as on phones, driven by the height of the row so the
+     can is cut at the same point whatever the width of the column. */
+  .flavor-stage img { inset: 0 auto auto 50%; margin: 0; transform: translateX(-50%); height: 132%; width: auto; max-width: none; max-height: none; }
   .flavor-foot h1 { font-size: clamp(2.6rem, 6.5vw, 7rem); }
   .flavor-foot p { font-size: clamp(1rem, 1.6vw, 1.5rem); max-width: 24ch; }
 }
@@ -228,7 +240,8 @@ button { color: inherit; }
   .flow-arrow { width: 1.5px; height: clamp(.85rem, 2.6vh, 1.5rem); }
   .flow-arrow::after { right: auto; left: -2.75px; top: auto; bottom: -1px; border-left: 3.5px solid transparent; border-right: 3.5px solid transparent; border-top: 6px solid var(--foreground); border-bottom: none; }
   .format-cta { margin-top: .7rem; }
-  .keywords span { font-size: min(5.2vh, 8.6vw); line-height: .9; }
+  .keywords { display: flex; flex-direction: column; justify-content: center; text-align: left; text-align-last: auto; }
+  .keywords span { display: block; font-size: min(5.2vh, 8.6vw); line-height: .9; }
   .routes-grid { grid-template-columns: 1fr; gap: 1.75rem; align-content: center; }
   .route-number { font-size: clamp(2.2rem, 11vw, 3.6rem); }
   .routes-grid h2 { font-size: clamp(1.6rem, 8vw, 2.4rem); }
