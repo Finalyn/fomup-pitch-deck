@@ -298,7 +298,7 @@ button { color: inherit; }
   /* Horizontal, in the band the photo leaves free at the foot of the slide. */
   /* Narrower than the slide and centred under the photo, but the lines stay
      left aligned inside the block. */
-  .lineup-caption { left: 50%; right: auto; top: auto; bottom: max(3.25rem, env(safe-area-inset-bottom)); width: min(21rem, 76vw); max-width: none; transform: translateX(-50%); text-align: left; }
+  .lineup-caption { left: 58%; right: auto; top: auto; bottom: max(3.25rem, env(safe-area-inset-bottom)); width: min(21rem, 76vw); max-width: none; transform: translateX(-50%); text-align: left; }
   .deck-bare .deck-wordmark { opacity: 0; }
   .lineup-caption h2 { font-size: 1.05rem; margin: .2rem 0 .25rem; }
   .lineup-note { font-size: .7rem; }
