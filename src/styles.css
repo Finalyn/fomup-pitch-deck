@@ -295,9 +295,10 @@ button { color: inherit; }
      the quarter turn brings to the top of the screen. Reads with the image once
      the phone is turned, instead of sitting sideways beneath it. */
   .lineup-frame { position: static; width: auto; aspect-ratio: auto; }
-  .note-break { display: none; }
   /* Horizontal, in the band the photo leaves free at the foot of the slide. */
-  .lineup-caption { left: 1.25rem; right: 1.25rem; top: auto; bottom: max(3.25rem, env(safe-area-inset-bottom)); width: auto; max-width: none; transform: none; }
+  /* Narrower than the slide and centred under the photo, but the lines stay
+     left aligned inside the block. */
+  .lineup-caption { left: 50%; right: auto; top: auto; bottom: max(3.25rem, env(safe-area-inset-bottom)); width: min(21rem, 76vw); max-width: none; transform: translateX(-50%); text-align: left; }
   .deck-bare .deck-wordmark { opacity: 0; }
   .lineup-caption h2 { font-size: 1.05rem; margin: .2rem 0 .25rem; }
   .lineup-note { font-size: .7rem; }
