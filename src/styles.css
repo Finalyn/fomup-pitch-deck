@@ -200,7 +200,7 @@ button { color: inherit; }
 .lineup-backdrop { position: absolute; inset: 0; background-position: center; background-size: cover; filter: blur(42px) saturate(1.05); transform: scale(1.18); }
 .lineup-image { position: relative; display: block; width: auto; height: auto; max-width: 100%; max-height: 86vh; max-height: 86dvh; }
 .lineup-caption { position: absolute; z-index: 2; left: clamp(1.25rem, 4vw, 4.5rem); bottom: clamp(3.5rem, 9vh, 6rem); max-width: 30ch; }
-.lineup-caption h2 { margin: .3rem 0 .4rem; font-family: var(--font-body); font-weight: 500; font-size: clamp(1.1rem, 2.2vw, 2rem); line-height: 1.05; letter-spacing: -.02em; }
+.lineup-caption h2 { margin: .3rem 0 .4rem; font-family: var(--font-body); font-weight: 500; font-size: clamp(1rem, 2.1vw, 2rem); line-height: 1.05; letter-spacing: -.02em; white-space: nowrap; }
 .lineup-note { margin: 0; font-size: clamp(.68rem, 1vw, .88rem); line-height: 1.3; opacity: .6; }
 
 .contact-slide .slide-inner { display: flex; flex-direction: column; padding-top: clamp(1.5rem, 7vh, 6rem); padding-bottom: clamp(3.75rem, 11vh, 7rem); }
@@ -275,7 +275,7 @@ button { color: inherit; }
   /* The photo shrinks a little so the caption sits in a clear band at the foot
      of the slide rather than on top of the cans. */
   .lineup-caption { left: 1.25rem; right: 1.25rem; bottom: max(3.25rem, env(safe-area-inset-bottom)); max-width: none; }
-  .lineup-caption h2 { font-size: 1.05rem; margin: .2rem 0 .25rem; }
+  .lineup-caption h2 { font-size: 1rem; margin: .2rem 0 .25rem; }
   .lineup-note { font-size: .7rem; }
   /* Rotating sends the photo's left edge to the top of the screen and its right
      edge to the bottom, so the bands above and below carry those two colours. */
