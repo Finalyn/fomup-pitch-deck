@@ -412,19 +412,21 @@ function PitchDeck() {
             style={{ backgroundImage: `url(${lineup})` }}
             aria-hidden="true"
           />
-          <img
-            className="lineup-image"
-            src={lineup}
-            alt="The four FOMUP flavours, Pinacolada, Espresso Martini, Matcha Coconut and Blueberry, each beside a glass of foam"
-            draggable={false}
-          />
-          <div className="lineup-caption">
-            <p className="eyebrow">The look</p>
-            <h2>Premium, and still fun.</h2>
-            <p className="lineup-note">
-              Visual mock-up. The cap and the dispensing head are still being reworked.
-            </p>
-          </div>
+          <figure className="lineup-frame">
+            <img
+              className="lineup-image"
+              src={lineup}
+              alt="The four FOMUP flavours, Pinacolada, Espresso Martini, Matcha Coconut and Blueberry, each beside a glass of foam"
+              draggable={false}
+            />
+            <figcaption className="lineup-caption">
+              <p className="eyebrow">The look</p>
+              <h2>Premium, and still fun.</h2>
+              <p className="lineup-note">
+                Visual mock-up. The cap and the dispensing head are still being reworked.
+              </p>
+            </figcaption>
+          </figure>
         </Slide>
 
         <Slide className="audience-slide">
