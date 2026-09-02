@@ -72,7 +72,7 @@ button { color: inherit; }
 .corner-location { right: clamp(1.25rem, 4vw, 4.5rem); }
 
 .idea-slide .slide-inner { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(15rem, .65fr); gap: 2vw; align-items: center; }
-.idea-copy h1 { max-width: 75rem; margin: 1.2rem 0; font-family: var(--font-display); font-size: clamp(2.6rem, 6.7vw, 7.4rem); line-height: .88; letter-spacing: -.055em; text-wrap: balance; }
+.idea-copy h1 { animation: can-in 380ms ease both; max-width: 75rem; margin: 1.2rem 0; font-family: var(--font-display); font-size: clamp(2.6rem, 6.7vw, 7.4rem); line-height: .88; letter-spacing: -.055em; text-wrap: balance; }
 .product-frame { position: relative; overflow: hidden; background: transparent; }
 /* Never size an image with a percentage height: inside a 1fr grid track Safari
    fails to resolve it and falls back to the intrinsic 1264px, which is what blew
@@ -80,6 +80,7 @@ button { color: inherit; }
 .product-frame img { display: block; width: auto; height: auto; max-width: 100%; max-height: 70vh; max-height: 70dvh; margin: 0 auto; }
 .idea-stage { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(.5rem, 1.5vh, 1.1rem); min-height: 0; }
 .idea-product { flex: 0 1 auto; min-height: 0; width: 100%; background: transparent; animation: can-in 380ms ease both; }
+.idea-flavor { margin: 0; flex: 0 0 auto; font-size: clamp(.6rem, 1vw, .82rem); font-weight: 800; letter-spacing: .14em; text-transform: uppercase; opacity: .55; animation: can-in 380ms ease both; }
 .idea-steps { display: flex; gap: .45rem; flex: 0 0 auto; }
 .idea-steps span { width: clamp(1rem, 2vw, 1.6rem); height: 2px; background: color-mix(in oklch, currentColor 25%, transparent); transition: background 240ms ease; }
 .idea-steps span.active { background: currentColor; }

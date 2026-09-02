@@ -13,7 +13,7 @@ import lineup from "@/assets/fomup-lineup.png";
 const SITE_URL = "https://finalyn.github.io/fomup-pitch-deck/";
 const SHARE_IMAGE = `${SITE_URL}og-image.jpg`;
 const SHARE_DESCRIPTION =
-  "Swiss-made drinkable cocktail foam. Four flavours, served straight from the siphon.";
+  "Swiss-made drinkable cocktail foam. Four flavours, served straight from the can.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -74,10 +74,10 @@ const routes = [
   {
     number: "01",
     name: "Public",
-    line: "Sold direct to people, poured at home.",
+    line: "Sold direct to people, served from the can.",
     points: [
       "Retail shelves and e-commerce",
-      "The siphon bought once, refills ordered after",
+      "The can dispenses on its own, nothing else to buy",
       "Parties, gifting, everyday treat",
     ],
   },
@@ -94,9 +94,9 @@ const routes = [
 ] as const;
 
 const homeSteps = [
-  { number: "01", title: "Own the siphon", note: "One purchase, reused for every refill" },
-  { number: "02", title: "Order refills", note: "Four flavours, delivered to the door" },
-  { number: "03", title: "Chill and pour", note: "Four hours in the fridge, then serve" },
+  { number: "01", title: "Buy the can", note: "250 ml, four flavours" },
+  { number: "02", title: "Chill it", note: "Four hours in the fridge" },
+  { number: "03", title: "Press", note: "The foam comes straight out of the can" },
 ] as const;
 
 const serveSteps = [
@@ -110,6 +110,7 @@ const flavors = [
   {
     key: "espresso",
     name: "Espresso Martini",
+    idea: "A cocktail you have never tasted, because you have never chewed one.",
     category: "The alcoholic one",
     note: "Rich coffee, smooth, gently sweet",
     src: espresso,
@@ -117,6 +118,7 @@ const flavors = [
   {
     key: "pinacolada",
     name: "Piña Colada",
+    idea: "Holiday in a glass, thick enough to stand a spoon in.",
     category: "The mocktail",
     note: "Tropical, creamy, refreshing",
     src: pinacolada,
@@ -124,6 +126,7 @@ const flavors = [
   {
     key: "blueberry",
     name: "Blueberry",
+    idea: "Fruit, air and sugar. Gone in three spoons.",
     category: "The fruity one",
     note: "Sweet, playful, easy to love",
     src: blueberry,
@@ -131,6 +134,7 @@ const flavors = [
   {
     key: "matcha",
     name: "Matcha Coconut",
+    idea: "Earthy, creamy, and impossible not to film.",
     category: "The healthy one",
     note: "Earthy, creamy, tropical",
     src: matcha,
@@ -260,7 +264,9 @@ function PitchDeck() {
         <Slide className="idea-slide">
           <div className="idea-copy">
             <p className="eyebrow">The idea</p>
-            <h1>A cocktail you&apos;ve never tasted, because you&apos;ve never chewed one.</h1>
+            <h1 key={flavors[ideaStep]?.key}>
+              {flavors[ideaStep]?.idea ?? "A cocktail you have never tasted."}
+            </h1>
             <p className="body-copy">
               A dense, aerated mousse served straight from a pressurized can.
             </p>
@@ -272,6 +278,9 @@ function PitchDeck() {
               alt={`FOMUP ${flavors[ideaStep]?.name ?? "Espresso Martini"} can`}
               className="idea-product"
             />
+            <p className="idea-flavor" key={`name-${flavors[ideaStep]?.key}`}>
+              {flavors[ideaStep]?.name}
+            </p>
             <div className="idea-steps" aria-hidden="true">
               {flavors.map((flavor, index) => (
                 <span key={flavor.key} className={index === ideaStep ? "active" : ""} />
@@ -314,10 +323,10 @@ function PitchDeck() {
 
         <Slide className="home-slide">
           <p className="eyebrow">01 / Public</p>
-          <h1 className="section-headline">Own the siphon. Refill forever.</h1>
+          <h1 className="section-headline">Own it. Shake it. Drink it.</h1>
           <p className="format-sub">
-            The same container that supplies a bar fits a home siphon. People buy the device once,
-            then keep ordering the flavours they like.
+            No bar, no siphon, no skill. A can in the fridge and friends who have never seen a
+            cocktail come out like this.
           </p>
           <div className="format-flow" aria-label="Three-step home flow">
             {homeSteps.map(({ number, title, note }, index) => (
@@ -331,7 +340,7 @@ function PitchDeck() {
               </div>
             ))}
           </div>
-          <p className="format-cta">Retail, e-commerce, gifting.</p>
+          <p className="format-cta">Impress your friends.</p>
         </Slide>
 
         <Slide className="format-slide">
