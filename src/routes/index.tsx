@@ -423,7 +423,8 @@ function PitchDeck() {
               <p className="eyebrow">The look</p>
               <h2>Premium, and still fun.</h2>
               <p className="lineup-note">
-                Visual mock-up. The cap and the dispensing head are still being reworked.
+                Visual mock-up. The cap and the dispensing head <br className="note-break" />
+                are still being reworked.
               </p>
             </figcaption>
           </figure>
