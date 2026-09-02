@@ -42,8 +42,8 @@ export const Route = createFileRoute("/")({
   component: PitchDeck,
 });
 
-const TOTAL_SLIDES = 14;
-const DARK_SLIDES = new Set([5, 7]);
+const TOTAL_SLIDES = 16;
+const DARK_SLIDES = new Set([7, 9]);
 const IDEA_SLIDE = 1;
 
 function Slide({ children, className = "" }: { children: ReactNode; className?: string }) {
@@ -69,6 +69,35 @@ function ProductImage({
     </div>
   );
 }
+
+const routes = [
+  {
+    number: "01",
+    name: "Public",
+    line: "Sold direct to people, poured at home.",
+    points: [
+      "Retail shelves and e-commerce",
+      "The siphon bought once, refills ordered after",
+      "Parties, gifting, everyday treat",
+    ],
+  },
+  {
+    number: "02",
+    name: "Business",
+    line: "Sold to venues, served by professionals.",
+    points: [
+      "Bars, nightclubs, festivals, private events",
+      "One container, no prep, no waste",
+      "Repeat orders on a service contract",
+    ],
+  },
+] as const;
+
+const homeSteps = [
+  { number: "01", title: "Own the siphon", note: "One purchase, reused for every refill" },
+  { number: "02", title: "Order refills", note: "Four flavours, delivered to the door" },
+  { number: "03", title: "Chill and pour", note: "Four hours in the fridge, then serve" },
+] as const;
 
 const serveSteps = [
   { number: "01", title: "Order", note: "Container delivered to the venue" },
@@ -262,6 +291,47 @@ function PitchDeck() {
             />
           </div>
           <p className="video-caption">First demo</p>
+        </Slide>
+
+        <Slide className="routes-slide">
+          <p className="eyebrow">Go to market</p>
+          <h1 className="section-headline">Two ways to sell it.</h1>
+          <div className="routes-grid">
+            {routes.map(({ number, name, line, points }) => (
+              <article key={number}>
+                <span className="route-number">{number}</span>
+                <h2>{name}</h2>
+                <p className="route-line">{line}</p>
+                <ul>
+                  {points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </Slide>
+
+        <Slide className="home-slide">
+          <p className="eyebrow">01 / Public</p>
+          <h1 className="section-headline">Own the siphon. Refill forever.</h1>
+          <p className="format-sub">
+            The same container that supplies a bar fits a home siphon. People buy the device once,
+            then keep ordering the flavours they like.
+          </p>
+          <div className="format-flow" aria-label="Three-step home flow">
+            {homeSteps.map(({ number, title, note }, index) => (
+              <div className="flow-item" key={number}>
+                <figure className="flow-step">
+                  <span className="step-number">{number}</span>
+                  <strong>{title}</strong>
+                  <span className="step-note">{note}</span>
+                </figure>
+                {index < homeSteps.length - 1 && <span className="flow-arrow" aria-hidden="true" />}
+              </div>
+            ))}
+          </div>
+          <p className="format-cta">Retail, e-commerce, gifting.</p>
         </Slide>
 
         <Slide className="format-slide">
