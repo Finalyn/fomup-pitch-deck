@@ -209,6 +209,10 @@ button { color: inherit; }
   .flow-arrow::after { right: auto; left: -2.75px; top: auto; bottom: -1px; border-left: 3.5px solid transparent; border-right: 3.5px solid transparent; border-top: 6px solid var(--foreground); border-bottom: none; }
   .format-cta { margin-top: .7rem; }
   .keywords span { font-size: min(5.2vh, 8.6vw); line-height: .9; }
+  /* The range photo is landscape and the slide is portrait, so it is turned
+     a quarter clockwise to fill the screen. The viewer turns the phone. */
+  .lineup-image { position: absolute; top: 50%; left: 50%; width: 100dvh; height: 100vw; transform: translate(-50%, -50%) rotate(90deg); }
+  .lineup-backdrop { filter: blur(60px) saturate(.85) brightness(1.06); }
   .contact-slide h1 { font-size: clamp(3rem, 17vw, 5rem); margin-top: 1.5vh; }
   .contact-line { font-size: .95rem; max-width: 24ch; }
   .deck-button { width: 100%; justify-content: space-between; padding: 1rem 1.15rem; }
