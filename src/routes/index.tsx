@@ -477,10 +477,13 @@ function PitchDeck() {
             Swiss-made drinkable cocktail foam, launching in the United States.
           </p>
           <div className="contact-details">
-            <a className="email-link" href="mailto:fomup@finalyn.com">
-              fomup@finalyn.com
+            <a className="email-link" href="mailto:fomup.drinks@gmail.com">
+              fomup.drinks@gmail.com
             </a>
-            <a className="deck-button" href="mailto:fomup@finalyn.com?subject=FOMUP%20pitch%20deck">
+            <a
+              className="deck-button"
+              href="mailto:fomup.drinks@gmail.com?subject=FOMUP%20pitch%20deck"
+            >
               Start a conversation <ArrowRight />
             </a>
           </div>
