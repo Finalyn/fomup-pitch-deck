@@ -121,11 +121,14 @@ button { color: inherit; }
 /* The words must flow as one paragraph for justification to stretch each line to
    both edges. Spans placed directly in a grid become grid items, one per row,
    which is why the page came out as a single tall column. */
-.keywords-wall { margin: 0; text-align: justify; text-align-last: justify; hyphens: none; }
+/* Justified text stretches each line's spaces independently, so a line holding
+   two long words gapes while the next sits tight. A wrapping flex row with a
+   fixed gap gives the same full page coverage with one constant space. */
+.keywords-wall { margin: 0; display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: .3em .45em; font-size: min(9vh, 4.8vw); }
 /* Sized so the block always fits: the number of lines rises with the font, so
    a size that filled one screen overflowed the next and the first and last rows
    were cut off. min(9vh, 4.8vw) lands on six lines at every common ratio. */
-.keywords span { font-family: var(--font-display); font-size: min(9vh, 4.8vw); line-height: 1.42; letter-spacing: -.05em; white-space: nowrap; }
+.keywords span { font-family: var(--font-display); line-height: 1; letter-spacing: -.05em; white-space: nowrap; }
 
 .flavor-slide, .flavor-slide .slide-inner { background: var(--flavor-bg); color: var(--flavor-ink); }
 .flavor-espresso { --flavor-bg: oklch(.26 .055 55); --flavor-ink: oklch(.96 .022 87); }
@@ -256,7 +259,7 @@ button { color: inherit; }
   .flow-arrow::after { right: auto; left: -3px; top: auto; bottom: -1px; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 8px solid currentColor; border-bottom: none; }
   .format-cta { margin-top: .7rem; }
   .keywords { display: flex; flex-direction: column; justify-content: center; }
-  .keywords-wall { text-align: left; text-align-last: auto; }
+  .keywords-wall { display: block; font-size: inherit; }
   .keywords span { display: block; font-size: min(5.2vh, 8.6vw); line-height: .9; }
   .routes-grid { grid-template-columns: 1fr; gap: 1.75rem; align-content: center; }
   .route-number { font-size: clamp(2.2rem, 11vw, 3.6rem); }
