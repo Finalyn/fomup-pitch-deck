@@ -92,8 +92,6 @@ button { color: inherit; }
 .video-caption { margin: 1rem 0 0; font-size: clamp(.85rem, 1.25vw, 1.2rem); font-weight: 700; }
 
 
-.format-slide .slide-inner { padding-top: clamp(2rem, 7vh, 6rem); display: flex; flex-direction: column; align-items: flex-start; }
-.format-headline { margin: .4rem 0 .6rem; font-family: var(--font-display); font-size: clamp(2.4rem, 6.2vw, 7rem); line-height: .9; letter-spacing: -.055em; }
 .format-sub { max-width: 44ch; margin: 0; font-size: clamp(1rem, 1.7vw, 1.45rem); line-height: 1.25; opacity: .9; }
 /* flex: 1 makes the flow absorb the space between the intro and the closing
    line, so the steps sit in the middle of the slide instead of hanging just
@@ -150,7 +148,7 @@ button { color: inherit; }
 .section-headline { margin: .5rem 0 0; font-family: var(--font-display); font-size: clamp(1.7rem, 4.6vw, 4.4rem); line-height: .92; letter-spacing: -.05em; text-wrap: balance; }
 
 
-.routes-slide .slide-inner, .home-slide .slide-inner { display: flex; flex-direction: column; align-items: flex-start; padding-top: clamp(1.3rem, 5vh, 4rem); }
+.routes-slide .slide-inner, .home-slide .slide-inner, .format-slide .slide-inner { display: flex; flex-direction: column; align-items: flex-start; padding-top: clamp(1.3rem, 5vh, 4rem); }
 .routes-grid { flex: 1; min-height: 0; width: 100%; margin-top: clamp(1rem, 3.5vh, 2.5rem); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.75rem, 5vw, 5rem); align-content: center; }
 .routes-grid article { min-width: 0; display: flex; flex-direction: column; gap: .3rem; }
 /* The big ghosted numeral carries the hierarchy, so the rule above each block
@@ -230,7 +228,6 @@ button { color: inherit; }
   .idea-product { height: auto; max-height: none; min-height: 0; overflow: visible; }
   .idea-product img { position: static; width: auto; height: auto; max-width: 100%; max-height: 66vh; max-height: 66dvh; }
   .video-frame { width: calc(100vw - 2.5rem); }
-  .format-headline { font-size: clamp(1.6rem, 9vw, 3rem); margin-bottom: .35rem; }
   .format-sub { display: none; }
   .format-flow { flex-direction: column; align-items: center; margin-top: clamp(.9rem, 3vh, 1.75rem); gap: clamp(.35rem, 1.2vh, .75rem); }
   .flow-item { flex: 0 0 auto; max-width: none; flex-direction: column; align-items: center; gap: clamp(.35rem, 1.2vh, .75rem); }
@@ -272,7 +269,6 @@ button { color: inherit; }
 @media (max-height: 600px) {
   .slide-inner { padding-top: 1rem; }
   .idea-copy h1 { font-size: clamp(2rem, 7vh, 3.2rem); }
-  .format-headline { font-size: clamp(1.6rem, 5vh, 2.6rem); margin-bottom: .25rem; }
   .format-sub { font-size: .9rem; }
   .format-flow { margin-top: 1rem; gap: .4rem; }
   .flow-step strong { font-size: clamp(1.2rem, 4.5vh, 1.9rem); }

@@ -101,10 +101,10 @@ const homeSteps = [
 ] as const;
 
 const serveSteps = [
-  { number: "01", title: "Order", note: "Container delivered to the venue" },
-  { number: "02", title: "Load", note: "Straight into the siphon" },
-  { number: "03", title: "Chill", note: "Four hours in the fridge" },
-  { number: "04", title: "Serve", note: "Ready to pour" },
+  { number: "01", title: "Order it", note: "Container delivered to the venue" },
+  { number: "02", title: "Load it", note: "Straight into the siphon" },
+  { number: "03", title: "Chill it", note: "Four hours in the fridge" },
+  { number: "04", title: "Serve it", note: "Foam on tap all night" },
 ] as const;
 
 const flavors = [
@@ -345,11 +345,11 @@ function PitchDeck() {
         </Slide>
 
         <Slide className="format-slide">
-          <p className="eyebrow">For bars & clubs</p>
-          <h1 className="format-headline">Refill. Refrigerate. Serve.</h1>
+          <p className="eyebrow">02 / Business</p>
+          <h1 className="section-headline">Order it. Load it. Serve it.</h1>
           <p className="format-sub">
-            FOMUP is built for on-premise venues. Bars and nightclubs order the container, we
-            deliver, they load it into their siphon, chill it for 4 hours, and serve.
+            No prep, no shaking, no wasted stock. One container feeds a whole night of service, and
+            the bar keeps its hands free.
           </p>
           <div className="format-flow" aria-label="Four-step service flow">
             {serveSteps.map(({ number, title, note }, index) => (
