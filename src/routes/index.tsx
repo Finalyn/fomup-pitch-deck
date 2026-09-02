@@ -8,21 +8,35 @@ import blueberry from "@/assets/fomup-blueberry-transparent.png";
 import pinacolada from "@/assets/fomup-pinacolada-transparent.png";
 import lineup from "@/assets/fomup-lineup.png";
 
+// Social scrapers do not resolve relative paths, so the share image needs an
+// absolute URL. Update this if the deck moves to another domain.
+const SITE_URL = "https://finalyn.github.io/fomup-pitch-deck/";
+const SHARE_IMAGE = `${SITE_URL}og-image.jpg`;
+const SHARE_DESCRIPTION =
+  "Swiss-made drinkable cocktail foam. Four flavours, served straight from the siphon.";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "FOMUP, Pitch Deck" },
-      {
-        name: "description",
-        content: "FOMUP is Swiss-made drinkable cocktail foam, launching in the United States.",
-      },
-      { property: "og:title", content: "FOMUP, Pitch Deck" },
-      {
-        property: "og:description",
-        content: "Meet FOMUP: a sensorial, shareable and unforgettable drink format.",
-      },
+      { name: "description", content: SHARE_DESCRIPTION },
+      { property: "og:site_name", content: "FOMUP" },
+      { property: "og:title", content: "FOMUP, Drink the Foam" },
+      { property: "og:description", content: SHARE_DESCRIPTION },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: SITE_URL },
+      { property: "og:image", content: SHARE_IMAGE },
+      { property: "og:image:type", content: "image/jpeg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "675" },
+      {
+        property: "og:image:alt",
+        content: "The four FOMUP flavours beside four glasses of foam",
+      },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "FOMUP, Drink the Foam" },
+      { name: "twitter:description", content: SHARE_DESCRIPTION },
+      { name: "twitter:image", content: SHARE_IMAGE },
     ],
   }),
   component: PitchDeck,

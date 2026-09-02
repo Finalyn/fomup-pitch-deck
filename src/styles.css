@@ -209,10 +209,14 @@ button { color: inherit; }
   .flow-arrow::after { right: auto; left: -2.75px; top: auto; bottom: -1px; border-left: 3.5px solid transparent; border-right: 3.5px solid transparent; border-top: 6px solid var(--foreground); border-bottom: none; }
   .format-cta { margin-top: .7rem; }
   .keywords span { font-size: min(5.2vh, 8.6vw); line-height: .9; }
-  /* The range photo is landscape and the slide is portrait, so it is turned
-     a quarter clockwise to fill the screen. The viewer turns the phone. */
-  .lineup-image { position: absolute; top: 50%; left: 50%; width: 100dvh; height: 100vw; transform: translate(-50%, -50%) rotate(90deg); }
-  .lineup-backdrop { filter: blur(60px) saturate(.85) brightness(1.06); }
+  /* The range photo is landscape and the slide is portrait, so it is turned a
+     quarter clockwise. Its width before rotation becomes the on-screen height,
+     so it is capped by both the viewport height and, through the 1.777 aspect
+     ratio, the viewport width. That is the largest it can be without cropping. */
+  .lineup-image { position: absolute; top: 50%; left: 50%; width: min(100dvh, 177.6vw); height: auto; max-width: none; transform: translate(-50%, -50%) rotate(90deg); }
+  /* Rotating sends the photo's left edge to the top of the screen and its right
+     edge to the bottom, so the bands above and below carry those two colours. */
+  .lineup-backdrop { filter: none; transform: none; background-image: none !important; background: linear-gradient(to bottom, #E9E1DA 0%, #E6DDD6 22%, #D8CABE 82%, #D2C4B8 100%); }
   .contact-slide h1 { font-size: clamp(3rem, 17vw, 5rem); margin-top: 1.5vh; }
   .contact-line { font-size: .95rem; max-width: 24ch; }
   .deck-button { width: 100%; justify-content: space-between; padding: 1rem 1.15rem; }
