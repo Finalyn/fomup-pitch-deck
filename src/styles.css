@@ -110,11 +110,14 @@ button { color: inherit; }
 .format-cta { margin: auto auto 0; align-self: center; text-align: center; font-size: clamp(.75rem, 1.1vw, 1rem); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; opacity: .7; }
 
 .keywords-slide, .keywords-slide .slide-inner { background: var(--gold); }
-.keywords-slide .slide-inner { padding: 0 1.2vw; display: grid; align-items: center; }
+.keywords-slide .slide-inner { padding: 0 1.2vw; display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; }
 /* On wide screens the words run as one justified block so they reach both
    edges on every line and cover the whole yellow page. Phones keep one word
    per line, where a justified wall would break into ragged fragments. */
-.keywords { display: grid; align-content: center; height: 100%; overflow: hidden; }
+/* minmax(0, 1fr) is what keeps the implicit column from sizing itself on the
+   content: left to auto it grows to max-content, the paragraph never wraps and
+   the line runs off both edges of the slide. */
+.keywords { display: grid; grid-template-columns: minmax(0, 1fr); align-content: center; height: 100%; overflow: hidden; }
 /* The words must flow as one paragraph for justification to stretch each line to
    both edges. Spans placed directly in a grid become grid items, one per row,
    which is why the page came out as a single tall column. */
