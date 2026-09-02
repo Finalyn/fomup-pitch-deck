@@ -8,7 +8,7 @@ import { request } from "node:http";
 import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { setTimeout as delay } from "node:timers/promises";
 
-const base = process.env.DECK_BASE ?? "/fomup-investor-deck/";
+const base = process.env.DECK_BASE ?? "/fomup-pitch-deck/";
 const port = process.env.PAGES_PORT ?? "4190";
 const outDir = "dist-pages";
 

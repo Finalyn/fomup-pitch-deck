@@ -28,7 +28,7 @@ jobs:
       # the node preset, boots the server once and captures the rendered HTML.
       - run: npm run build:pages
         env:
-          DECK_BASE: /fomup-investor-deck/
+          DECK_BASE: /fomup-pitch-deck/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
