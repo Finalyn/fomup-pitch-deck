@@ -110,7 +110,7 @@ button { color: inherit; }
 .format-cta { margin: auto auto 0; align-self: center; text-align: center; font-size: clamp(.75rem, 1.1vw, 1rem); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; opacity: .7; }
 
 .keywords-slide, .keywords-slide .slide-inner { background: var(--gold); }
-.keywords-slide .slide-inner { padding: 0 1.2vw; display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; }
+.keywords-slide .slide-inner { padding: clamp(1.5rem, 4vw, 5rem) clamp(1.25rem, 4vw, 4.5rem); display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; }
 /* On wide screens the words run as one justified block so they reach both
    edges on every line and cover the whole yellow page. Phones keep one word
    per line, where a justified wall would break into ragged fragments. */
@@ -122,7 +122,10 @@ button { color: inherit; }
    both edges. Spans placed directly in a grid become grid items, one per row,
    which is why the page came out as a single tall column. */
 .keywords-wall { margin: 0; text-align: justify; text-align-last: justify; hyphens: none; }
-.keywords span { font-family: var(--font-display); font-size: min(10.5vh, 6.2vw); line-height: 1.55; letter-spacing: -.05em; white-space: nowrap; }
+/* Sized so the block always fits: the number of lines rises with the font, so
+   a size that filled one screen overflowed the next and the first and last rows
+   were cut off. min(9vh, 4.8vw) lands on six lines at every common ratio. */
+.keywords span { font-family: var(--font-display); font-size: min(9vh, 4.8vw); line-height: 1.42; letter-spacing: -.05em; white-space: nowrap; }
 
 .flavor-slide, .flavor-slide .slide-inner { background: var(--flavor-bg); color: var(--flavor-ink); }
 .flavor-espresso { --flavor-bg: oklch(.26 .055 55); --flavor-ink: oklch(.96 .022 87); }
