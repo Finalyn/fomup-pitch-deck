@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Building2, CalendarHeart, Martini, Music2 } from "lucide-react";
-import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { Fragment, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 
 import espresso from "@/assets/fomup-espresso-transparent.png";
 import matcha from "@/assets/fomup-matcha-transparent.png";
@@ -111,6 +111,7 @@ const flavors = [
   {
     key: "espresso",
     name: "Espresso Martini",
+    accent: "oklch(.35 .07 55)",
     idea: "A cocktail you have never tasted, because you have never chewed one.",
     category: "The alcoholic one",
     note: "Rich coffee, smooth, gently sweet",
@@ -119,6 +120,7 @@ const flavors = [
   {
     key: "pinacolada",
     name: "Piña Colada",
+    accent: "oklch(.62 .13 78)",
     idea: "Holiday in a glass, thick enough to stand a spoon in.",
     category: "The mocktail",
     note: "Tropical, creamy, refreshing",
@@ -127,6 +129,7 @@ const flavors = [
   {
     key: "blueberry",
     name: "Blueberry",
+    accent: "oklch(.45 .22 295)",
     idea: "Fruit, air and sugar. Gone in three spoons.",
     category: "The fruity one",
     note: "Sweet, playful, easy to love",
@@ -135,6 +138,7 @@ const flavors = [
   {
     key: "matcha",
     name: "Matcha Coconut",
+    accent: "oklch(.5 .12 140)",
     idea: "Earthy, creamy, and impossible not to film.",
     category: "The healthy one",
     note: "Earthy, creamy, tropical",
@@ -264,7 +268,9 @@ function PitchDeck() {
 
         <Slide className="idea-slide">
           <div className="idea-copy">
-            <p className="eyebrow">The idea</p>
+            <p className="eyebrow" style={{ color: flavors[ideaStep]?.accent }}>
+              The idea
+            </p>
             <h1 key={flavors[ideaStep]?.key}>
               {flavors[ideaStep]?.idea ?? "A cocktail you have never tasted."}
             </h1>
@@ -371,8 +377,11 @@ function PitchDeck() {
         <Slide className="keywords-slide">
           <div className="keywords" aria-label="FOMUP in keywords">
             <p className="keywords-wall">
-              {keywords.map((word) => (
-                <span key={word}>{word} </span>
+              {keywords.map((word, index) => (
+                <Fragment key={word}>
+                  <span>{word}</span>
+                  {index < keywords.length - 1 ? " " : null}
+                </Fragment>
               ))}
             </p>
           </div>
@@ -409,6 +418,13 @@ function PitchDeck() {
             alt="The four FOMUP flavours, Pinacolada, Espresso Martini, Matcha Coconut and Blueberry, each beside a glass of foam"
             draggable={false}
           />
+          <div className="lineup-caption">
+            <p className="eyebrow">The look</p>
+            <h2>Premium, and still fun.</h2>
+            <p className="lineup-note">
+              Visual mock-up. The cap and the dispensing head are still being reworked.
+            </p>
+          </div>
         </Slide>
 
         <Slide className="audience-slide">

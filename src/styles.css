@@ -176,7 +176,7 @@ button { color: inherit; }
 .clean-list svg { grid-column: 1; grid-row: 1 / 3; width: clamp(1.4rem, 2.4vw, 2.4rem); height: auto; opacity: .8; }
 /* Lighter than the display face: at this size Arial Black turns the lists into
    solid blocks of ink. Helvetica at 600 keeps the scale without the weight. */
-.list-title { grid-column: 2; grid-row: 1; font-family: var(--font-body); font-weight: 600; font-size: clamp(1.25rem, 3.2vw, 2.8rem); line-height: 1.02; letter-spacing: -.025em; }
+.list-title { grid-column: 2; grid-row: 1; font-family: var(--font-body); font-weight: 500; font-size: clamp(1.25rem, 3.2vw, 2.8rem); line-height: 1.05; letter-spacing: -.02em; }
 .list-note { grid-column: 2; grid-row: 2; margin-top: .15rem; font-size: clamp(.72rem, 1.05vw, 1rem); line-height: 1.25; opacity: .68; }
 .collab-list li { grid-template-columns: minmax(0, 1fr); }
 .collab-list .list-title, .collab-list .list-note { grid-column: 1; }
@@ -196,6 +196,9 @@ button { color: inherit; }
 .lineup-slide .slide-inner { display: grid; place-items: center; padding: 0; overflow: hidden; }
 .lineup-backdrop { position: absolute; inset: 0; background-position: center; background-size: cover; filter: blur(42px) saturate(1.05); transform: scale(1.18); }
 .lineup-image { position: relative; display: block; width: auto; height: auto; max-width: 100%; max-height: 86vh; max-height: 86dvh; }
+.lineup-caption { position: absolute; z-index: 2; left: clamp(1.25rem, 4vw, 4.5rem); bottom: clamp(3.5rem, 9vh, 6rem); max-width: 30ch; }
+.lineup-caption h2 { margin: .3rem 0 .4rem; font-family: var(--font-body); font-weight: 500; font-size: clamp(1.1rem, 2.2vw, 2rem); line-height: 1.05; letter-spacing: -.02em; }
+.lineup-note { margin: 0; font-size: clamp(.68rem, 1vw, .88rem); line-height: 1.3; opacity: .6; }
 
 .contact-slide .slide-inner { display: flex; flex-direction: column; padding-top: clamp(1.5rem, 7vh, 6rem); padding-bottom: clamp(3.75rem, 11vh, 7rem); }
 .contact-slide .eyebrow, .contact-slide h1, .contact-line, .contact-details { position: relative; z-index: 1; }
@@ -265,7 +268,12 @@ button { color: inherit; }
      quarter clockwise. Its width before rotation becomes the on-screen height,
      so it is capped by both the viewport height and, through the 1.777 aspect
      ratio, the viewport width. That is the largest it can be without cropping. */
-  .lineup-image { position: absolute; top: 50%; left: 50%; width: min(100vh, 177.6vw); width: min(100dvh, 177.6vw); height: auto; max-width: none; max-height: none; transform: translate(-50%, -50%) rotate(90deg); }
+  .lineup-image { position: absolute; top: 50%; left: 50%; width: min(88vh, 158vw); width: min(88dvh, 158vw); height: auto; max-width: none; max-height: none; transform: translate(-50%, -50%) rotate(90deg); }
+  /* The photo shrinks a little so the caption sits in a clear band at the foot
+     of the slide rather than on top of the cans. */
+  .lineup-caption { left: 1.25rem; right: 1.25rem; bottom: max(3.25rem, env(safe-area-inset-bottom)); max-width: none; }
+  .lineup-caption h2 { font-size: 1.05rem; margin: .2rem 0 .25rem; }
+  .lineup-note { font-size: .7rem; }
   /* Rotating sends the photo's left edge to the top of the screen and its right
      edge to the bottom, so the bands above and below carry those two colours. */
   .lineup-backdrop { filter: none; transform: none; background-image: none !important; background: linear-gradient(to bottom, #E9E1DA 0%, #E6DDD6 22%, #D8CABE 82%, #D2C4B8 100%); }
