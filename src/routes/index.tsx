@@ -6,6 +6,7 @@ import espresso from "@/assets/fomup-espresso-transparent.png";
 import matcha from "@/assets/fomup-matcha-transparent.png";
 import blueberry from "@/assets/fomup-blueberry-transparent.png";
 import pinacolada from "@/assets/fomup-pinacolada-transparent.png";
+import lineup from "@/assets/fomup-lineup.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -297,6 +298,23 @@ function PitchDeck() {
           </Slide>
         ))}
 
+        <Slide className="lineup-slide">
+          {/* The photo has its own beige gradient background, noticeably darker than
+              the deck cream. Blurring a copy of it behind the sharp image dissolves
+              the seam instead of leaving a hard rectangle floating on the slide. */}
+          <div
+            className="lineup-backdrop"
+            style={{ backgroundImage: `url(${lineup})` }}
+            aria-hidden="true"
+          />
+          <img
+            className="lineup-image"
+            src={lineup}
+            alt="The four FOMUP flavours, Pinacolada, Espresso Martini, Matcha Coconut and Blueberry, each beside a glass of foam"
+            draggable={false}
+          />
+        </Slide>
+
         <Slide className="audience-slide">
           <p className="eyebrow">Who it&apos;s for</p>
           <h1 className="section-headline">Built for the room, not the shelf.</h1>
@@ -355,26 +373,6 @@ function PitchDeck() {
             Placeholder categories, replace with named partner targets
           </p>
         </Slide>
-
-        <Slide className="opportunity-slide">
-          <p className="eyebrow">The US opportunity</p>
-          <div className="stats-list">
-            <div>
-              <strong>[ $XXB ]</strong>
-              <span>US ready-to-drink cocktail market</span>
-            </div>
-            <div>
-              <strong>[ XX% ]</strong>
-              <span>Projected category growth</span>
-            </div>
-            <div>
-              <strong>[ XXK ]</strong>
-              <span>Target US on-premise venues</span>
-            </div>
-          </div>
-          <p className="placeholder-note">Placeholder values, replace with validated market data</p>
-        </Slide>
-
         <Slide className="contact-slide">
           <p className="eyebrow">Let&apos;s talk</p>
           <h1>
