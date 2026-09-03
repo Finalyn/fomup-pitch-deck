@@ -2,10 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Building2, CalendarHeart, Martini, Music2 } from "lucide-react";
 import { Fragment, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 
-import espresso from "@/assets/fomup-espresso.png";
-import matcha from "@/assets/fomup-matcha.png";
-import blueberry from "@/assets/fomup-blueberry.png";
-import pinacolada from "@/assets/fomup-pinacolada.png";
+import espresso from "@/assets/fomup-espresso-transparent.png";
+import matcha from "@/assets/fomup-matcha-transparent.png";
+import blueberry from "@/assets/fomup-blueberry-transparent.png";
+import pinacolada from "@/assets/fomup-pinacolada-transparent.png";
 import lineup from "@/assets/fomup-lineup.png";
 
 // Social scrapers do not resolve relative paths, so the share image needs an
@@ -126,7 +126,7 @@ const flavors = [
     accent: "oklch(.62 .13 78)",
     idea: "Holiday in a glass, thick enough to stand a spoon in.",
     category: "The mocktail",
-    note: "Tropical and creamy, 0% alcohol",
+    note: "Tropical, creamy, refreshing",
     src: pinacolada,
   },
   {
@@ -135,7 +135,7 @@ const flavors = [
     accent: "oklch(.45 .22 295)",
     idea: "Fruit, air and sugar. Gone in three spoons.",
     category: "The fruity one",
-    note: "Fruity and natural",
+    note: "Sweet, playful, easy to love",
     src: blueberry,
   },
   {
@@ -144,7 +144,7 @@ const flavors = [
     accent: "oklch(.5 .12 140)",
     idea: "Earthy, creamy, and impossible not to film.",
     category: "The healthy one",
-    note: "Healthy and energizing",
+    note: "Earthy, creamy, tropical",
     src: matcha,
   },
 ] as const;
@@ -278,7 +278,7 @@ function PitchDeck() {
               {flavors[ideaStep]?.idea ?? "A cocktail you have never tasted."}
             </h1>
             <p className="body-copy">
-              A dense, aerated mousse that pumps straight out of the bottle.
+              A dense, aerated mousse served straight from a pressurized can.
             </p>
           </div>
           <div className="idea-stage">

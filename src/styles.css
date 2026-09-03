@@ -134,9 +134,9 @@ button { color: inherit; }
 
 .flavor-slide, .flavor-slide .slide-inner { background: var(--flavor-bg); color: var(--flavor-ink); }
 .flavor-espresso { --flavor-bg: oklch(.26 .055 55); --flavor-ink: oklch(.96 .022 87); }
-.flavor-pinacolada { --flavor-bg: oklch(.84 .155 90); --flavor-ink: oklch(.2 .03 60); }
-.flavor-blueberry { --flavor-bg: oklch(.34 .12 274); --flavor-ink: oklch(.95 .025 280); }
-.flavor-matcha { --flavor-bg: oklch(.72 .13 140); --flavor-ink: oklch(.22 .06 145); }
+.flavor-pinacolada { --flavor-bg: oklch(.85 .135 88); --flavor-ink: oklch(.2 .03 60); }
+.flavor-blueberry { --flavor-bg: oklch(.4 .19 292); --flavor-ink: oklch(.96 .02 300); }
+.flavor-matcha { --flavor-bg: oklch(.76 .14 138); --flavor-ink: oklch(.2 .05 145); }
 .flavor-slide .slide-inner { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: clamp(.5rem, 2vh, 1.25rem); }
 .flavor-head { display: flex; align-items: baseline; gap: 1rem; }
 .flavor-stage { position: relative; min-height: 0; overflow: hidden; }
@@ -161,7 +161,7 @@ button { color: inherit; }
   .flavor-stage { grid-column: 2; grid-row: 2; align-self: stretch; }
   /* Same full bleed crop as on phones, driven by the height of the row so the
      can is cut at the same point whatever the width of the column. */
-  .flavor-stage img { inset: 0 auto auto 50%; margin: 0; transform: translateX(-50%); height: 142%; width: auto; max-width: none; max-height: none; }
+  .flavor-stage img { inset: 0 auto auto 50%; margin: 0; transform: translateX(-50%); height: 150%; width: auto; max-width: none; max-height: none; }
   .flavor-foot h1 { font-size: clamp(2.6rem, 6.5vw, 7rem); }
   .flavor-foot p { font-size: clamp(1rem, 1.6vw, 1.5rem); max-width: 24ch; }
 }
@@ -213,10 +213,9 @@ button { color: inherit; }
 /* Sits in the clear beige column on the left of the photo, level with the cans,
    so it reads as part of the shot rather than a label stuck underneath it. */
 /* 3.41% is where DRINK THE FOAM starts in the file, measured on the pixels. */
-/* Left edge at 3.53%, where DRINK THE FOAM starts in the new poster, and no
-   wider than 18%: the first bottle enters the frame at 22.4%, measured on the
-   pixels. Both were remeasured when the artwork was replaced. */
-.lineup-caption { position: absolute; z-index: 2; left: 3.53%; top: 50%; transform: translateY(-50%); max-width: 18%; }
+/* Left edge at 3.41%, where DRINK THE FOAM starts in the file, and no wider than
+   19.5%: the first can enters the frame at 24%, measured on the pixels. */
+.lineup-caption { position: absolute; z-index: 2; left: 3.41%; top: 50%; transform: translateY(-50%); max-width: 19.5%; }
 .lineup-caption h2 { margin: .25rem 0 .3rem; font-family: var(--font-body); font-weight: 500; font-size: clamp(.95rem, 1.45vw, 1.35rem); line-height: 1.1; letter-spacing: -.02em; white-space: nowrap; }
 .lineup-note { margin: 0; font-size: clamp(.6rem, .82vw, .75rem); line-height: 1.35; opacity: .6; }
 
@@ -262,7 +261,7 @@ button { color: inherit; }
   .idea-copy .body-copy { display: none; }
   .idea-stage { height: auto; gap: .5rem; }
   .idea-product { height: auto; max-height: none; min-height: 0; overflow: visible; }
-  .idea-product img { position: static; width: auto; height: auto; max-width: 100%; max-height: 72vh; max-height: 72dvh; }
+  .idea-product img { position: static; width: auto; height: auto; max-width: 100%; max-height: 66vh; max-height: 66dvh; }
   .video-frame { width: calc(100vw - 2.5rem); }
   .format-sub { display: none; }
   .format-flow { flex-direction: column; align-items: center; margin-top: clamp(.9rem, 3vh, 1.75rem); gap: clamp(.35rem, 1.2vh, .75rem); }
@@ -284,7 +283,7 @@ button { color: inherit; }
   /* Deliberate full bleed crop on phones: the can is sized by the width of the
      slide and anchored to the top, so it runs off the bottom behind the flavour
      name instead of being fitted into the leftover space. */
-  .flavor-stage img { inset: 5% auto auto 50%; margin: 0; transform: translateX(-50%); width: 46%; height: auto; max-width: none; max-height: none; }
+  .flavor-stage img { inset: 6% auto auto 50%; margin: 0; transform: translateX(-50%); width: 68%; height: auto; max-width: none; max-height: none; }
   /* The range photo is landscape and the slide is portrait, so it is turned a
      quarter clockwise. Its width before rotation becomes the on-screen height,
      so it is capped by both the viewport height and, through the 1.777 aspect
