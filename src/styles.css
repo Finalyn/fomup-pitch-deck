@@ -88,10 +88,11 @@ button { color: inherit; }
 .idea-steps span.active { background: currentColor; }
 @keyframes can-in { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: none; } }
 
-.video-slide .slide-inner { display: grid; place-content: center; }
-.video-frame { width: min(84vw, 1380px); max-height: 70vh; position: relative; display: grid; place-items: center; background: transparent; }
-.video-frame video { display: block; max-width: 100%; max-height: 70vh; height: auto; width: auto; }
-.video-caption { margin: 1rem 0 0; font-size: clamp(.85rem, 1.25vw, 1.2rem); font-weight: 700; }
+.video-slide .slide-inner { display: flex; flex-direction: column; align-items: flex-start; padding-top: clamp(1.3rem, 5vh, 4rem); }
+.video-copy { width: 100%; }
+.video-sub { max-width: 46ch; margin: .5rem 0 0; font-size: clamp(.9rem, 1.5vw, 1.3rem); line-height: 1.3; opacity: .8; }
+.video-frame { flex: 1; min-height: 0; width: 100%; margin-top: clamp(1rem, 3vh, 2.5rem); position: relative; display: grid; place-items: center; background: transparent; }
+.video-frame video { display: block; width: auto; height: auto; max-width: 100%; max-height: 58vh; max-height: 58dvh; }
 
 
 .format-sub { max-width: 44ch; margin: 0; font-size: clamp(1rem, 1.7vw, 1.45rem); line-height: 1.25; opacity: .9; }
@@ -146,7 +147,8 @@ button { color: inherit; }
    overflows and clips the can, which is exactly what happened on both. */
 .flavor-stage img { position: absolute; inset: 0; margin: auto; display: block; width: auto; height: auto; max-width: 100%; max-height: 92%; }
 .flavor-foot h1 { margin: 0 0 .4rem; font-family: var(--font-display); font-size: clamp(2.1rem, 11vw, 5.5rem); line-height: .84; letter-spacing: -.055em; }
-.flavor-foot p { margin: 0 0 .55rem; font-size: clamp(.9rem, 4vw, 1.35rem); line-height: 1.2; opacity: .85; }
+.flavor-foot p { margin: 0 0 .3rem; font-size: clamp(.9rem, 4vw, 1.35rem); line-height: 1.2; opacity: .85; }
+.flavor-tagline { margin: 0 0 .6rem !important; font-size: clamp(.75rem, 3vw, 1.05rem); opacity: .6; }
 .flavor-foot small { font-size: clamp(.55rem, 2.6vw, .78rem); font-weight: 800; letter-spacing: .1em; text-transform: uppercase; opacity: .7; }
 
 /* Landscape only: a tablet held upright is a tall narrow screen and wants the
@@ -191,16 +193,17 @@ button { color: inherit; }
 .collab-list li { grid-template-columns: minmax(0, 1fr); }
 .collab-list .list-title, .collab-list .list-note { grid-column: 1; }
 
-.trend-list { margin-top: clamp(1rem, 3.5vh, 2.5rem); display: flex; flex-direction: column; gap: clamp(.85rem, 3vh, 2rem); }
-.trend-list article { display: grid; grid-template-columns: minmax(6.5rem, .32fr) minmax(0, 1fr); gap: clamp(.75rem, 2.5vw, 2rem); align-items: start; }
-.trend-list strong { font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 3.4rem); line-height: .9; letter-spacing: -.05em; }
-.trend-list h2 { margin: 0 0 .25rem; font-size: clamp(.95rem, 1.7vw, 1.5rem); line-height: 1.15; letter-spacing: -.01em; }
-.trend-list p { margin: 0; font-size: clamp(.75rem, 1.05vw, 1rem); line-height: 1.3; opacity: .68; }
+.trend-list { flex: 1; min-height: 0; margin-top: clamp(1rem, 3.5vh, 2.5rem); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 3.5vw, 4rem); align-content: center; }
+.trend-list article { min-width: 0; display: flex; flex-direction: column; gap: .4rem; }
+.trend-list h2 { margin: 0; font-family: var(--font-display); font-size: clamp(1.1rem, 2.4vw, 2.2rem); line-height: .98; letter-spacing: -.04em; }
+.trend-list p { margin: 0; font-size: clamp(.75rem, 1.05vw, 1rem); line-height: 1.35; opacity: .68; }
 
-.age-band { margin-top: auto; padding-top: clamp(1rem, 3vh, 2rem); display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: clamp(.6rem, 2vw, 1.5rem); }
-.age-edge { font-family: var(--font-display); font-size: clamp(2rem, 7vw, 5.5rem); line-height: .85; letter-spacing: -.055em; }
-.age-rule { height: 2px; background: var(--foreground); }
-.age-caption { grid-column: 1 / -1; font-size: clamp(.6rem, 1vw, .82rem); font-weight: 800; letter-spacing: .14em; text-transform: uppercase; opacity: .55; }
+.tiers-slide .slide-inner { display: flex; flex-direction: column; padding-top: clamp(1.3rem, 5vh, 4rem); }
+.tier-list li { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto; }
+.tier-rank { grid-column: 1; grid-row: 1; margin-bottom: .1rem; font-size: clamp(.56rem, .88vw, .76rem); font-weight: 800; letter-spacing: .14em; text-transform: uppercase; opacity: .5; }
+.tier-list .list-title { grid-column: 1; grid-row: 2; }
+.tier-list .list-note { grid-column: 1; grid-row: 3; }
+
 
 
 .lineup-slide .slide-inner { display: grid; place-items: center; padding: 0; overflow: hidden; }
@@ -218,11 +221,13 @@ button { color: inherit; }
 .lineup-caption { position: absolute; z-index: 2; left: 3.41%; top: 50%; transform: translateY(-50%); max-width: 19.5%; }
 .lineup-caption h2 { margin: .25rem 0 .3rem; font-family: var(--font-body); font-weight: 500; font-size: clamp(.95rem, 1.45vw, 1.35rem); line-height: 1.1; letter-spacing: -.02em; white-space: nowrap; }
 .lineup-note { margin: 0; font-size: clamp(.6rem, .82vw, .75rem); line-height: 1.35; opacity: .6; }
+.lineup-disclaimer { margin-top: .55rem !important; opacity: .42; }
 
 .contact-slide .slide-inner { display: flex; flex-direction: column; padding-top: clamp(1.5rem, 7vh, 6rem); padding-bottom: clamp(3.75rem, 11vh, 7rem); }
 .contact-slide .eyebrow, .contact-slide h1, .contact-line, .contact-details { position: relative; z-index: 1; }
 .contact-slide h1 { margin: clamp(.5rem, 2vh, 1.5rem) 0 0; font-family: var(--font-display); font-size: clamp(3rem, 11vw, 11rem); line-height: .8; letter-spacing: -.065em; }
-.contact-line { max-width: 28ch; margin: clamp(.7rem, 2.5vh, 1.5rem) 0 0; font-size: clamp(.9rem, 1.5vw, 1.3rem); line-height: 1.3; opacity: .7; }
+.contact-line { max-width: 46ch; margin: clamp(.7rem, 2.5vh, 1.5rem) 0 0; font-size: clamp(.88rem, 1.35vw, 1.2rem); line-height: 1.35; opacity: .75; }
+.contact-ask { margin-top: .7rem; opacity: .6; }
 .contact-details { align-self: stretch; margin-top: auto; padding-top: clamp(.9rem, 3vh, 1.75rem); border-top: 1px solid color-mix(in oklch, var(--foreground) 22%, transparent); display: flex; flex-direction: column; align-items: flex-start; gap: clamp(.85rem, 2.5vh, 1.5rem); }
 .email-link { color: inherit; font-size: clamp(1.05rem, 2.4vw, 2.4rem); text-decoration-thickness: 2px; text-underline-offset: .3em; }
 .deck-button { display: inline-flex; align-items: center; gap: clamp(1rem, 4vw, 2rem); padding: .9rem 1.15rem; border: 2px solid var(--foreground); background: var(--foreground); color: var(--background); font-weight: 800; text-decoration: none; text-transform: uppercase; font-size: .75rem; letter-spacing: .08em; }
@@ -276,6 +281,13 @@ button { color: inherit; }
   .keywords-wall { display: block; font-size: inherit; }
   .keywords span { display: block; font-size: min(5.2vh, 8.6vw); line-height: .9; }
   .routes-grid { grid-template-columns: 1fr; gap: 1.75rem; align-content: center; }
+  .trend-list { grid-template-columns: 1fr; gap: 1.1rem; }
+  .trend-list h2 { font-size: clamp(1.15rem, 6vw, 1.8rem); }
+  .trend-list p { font-size: .8rem; }
+  .video-sub { font-size: .92rem; }
+  .video-frame { margin-top: 1rem; }
+  .video-frame video { max-height: 52vh; max-height: 52dvh; }
+  .tier-rank { font-size: .55rem; }
   .route-number { font-size: clamp(2.2rem, 11vw, 3.6rem); }
   .routes-grid h2 { font-size: clamp(1.6rem, 8vw, 2.4rem); }
   .route-line { font-size: .9rem; margin-bottom: .35rem; }
@@ -324,7 +336,8 @@ button { color: inherit; }
   .step-note { font-size: .7rem; }
   .flow-step { gap: .4rem; }
   .format-cta { font-size: .65rem; }
-  .audience-slide .eyebrow, .collab-slide .eyebrow, .drinker-slide .eyebrow { display: none; }
+  .audience-slide .eyebrow, .collab-slide .eyebrow, .drinker-slide .eyebrow,
+  .tiers-slide .eyebrow { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
