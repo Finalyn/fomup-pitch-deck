@@ -300,7 +300,7 @@ button { color: inherit; }
      quarter clockwise. Its width before rotation becomes the on-screen height,
      so it is capped by both the viewport height and, through the 1.777 aspect
      ratio, the viewport width. That is the largest it can be without cropping. */
-  .lineup-image { position: absolute; top: 50%; left: 50%; width: min(80vh, 142vw); width: min(80dvh, 142vw); height: auto; max-width: none; max-height: none; transform: translate(-50%, -50%) rotate(90deg); }
+  .lineup-image { position: absolute; top: 50%; left: 50%; width: min(80vh, 142vw); width: min(80dvh, 142vw); height: auto; max-width: none; max-height: none; transform: translate(-50%, -50%) rotate(90deg) translateX(-4dvh); }
   /* The photo shrinks a little so the caption sits in a clear band at the foot
      of the slide rather than on top of the cans. */
   /* Turned with the photo and set in the clear strip along its top edge, which
@@ -310,7 +310,7 @@ button { color: inherit; }
   /* Horizontal, in the band the photo leaves free at the foot of the slide. */
   /* Narrower than the slide and centred under the photo, but the lines stay
      left aligned inside the block. */
-  .lineup-caption { left: 58%; right: auto; top: auto; bottom: max(3.25rem, env(safe-area-inset-bottom)); width: min(19rem, 70vw); max-width: none; transform: translateX(-50%); text-align: left; }
+  .lineup-caption { left: 46%; right: auto; top: auto; bottom: max(3.25rem, env(safe-area-inset-bottom)); width: min(19rem, 70vw); max-width: none; transform: translateX(-50%); text-align: left; }
   .deck-bare .deck-wordmark { opacity: 0; }
   .lineup-caption h2 { font-size: .82rem; margin: .15rem 0 .18rem; }
   .lineup-note { font-size: .55rem; line-height: 1.28; }
