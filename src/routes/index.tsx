@@ -42,8 +42,8 @@ export const Route = createFileRoute("/")({
   component: PitchDeck,
 });
 
-const TOTAL_SLIDES = 17;
-const DARK_SLIDES = new Set([7, 9]);
+const TOTAL_SLIDES = 18;
+const DARK_SLIDES = new Set([7, 9, 12]);
 // The range photo carries its own FOMUP lockup, so the fixed one is dropped
 // there on phones, where the two would otherwise sit on top of each other.
 const BARE_SLIDES = new Set([11]);
@@ -493,6 +493,32 @@ function PitchDeck() {
               </p>
             </figcaption>
           </figure>
+        </Slide>
+
+        {/* The render is a VP9 WebM with an alpha channel, which Safari decodes without
+            its transparency and paints on solid black. The slide is pure black behind
+            the frame for that reason: where the alpha fails the fallback is invisible,
+            and no glow is placed inside the video's own rectangle. */}
+        <Slide className="mockup-slide">
+          <div className="mockup-copy">
+            <p className="eyebrow">The bottle</p>
+            <h1 className="section-headline">See it from every angle.</h1>
+          </div>
+          <div className="mockup-stage">
+            <video
+              className="mockup-video"
+              src={`${import.meta.env.BASE_URL}fomup-bottle-3d.webm`}
+              autoPlay
+              muted
+              loop
+              playsInline
+              controls
+              preload="metadata"
+            />
+          </div>
+          <p className="mockup-note">
+            Concept render. Bottle, cap and dispensing system currently in development.
+          </p>
         </Slide>
 
         <Slide className="audience-slide">

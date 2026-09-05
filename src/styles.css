@@ -181,6 +181,17 @@ button { color: inherit; }
 .routes-grid ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .35rem; }
 .routes-grid li { position: relative; padding-left: 1rem; font-size: clamp(.72rem, 1.05vw, 1rem); line-height: 1.25; opacity: .7; }
 .routes-grid li::before { content: ""; position: absolute; left: 0; top: .5em; width: .32rem; height: .32rem; border-radius: 50%; background: currentColor; opacity: .55; }
+/* Pure black, not a near black: the render's transparency falls back to solid
+   black in Safari, and only an exact match hides the seam. Nothing decorative
+   goes inside the video's rectangle for the same reason. */
+.mockup-slide, .mockup-slide .slide-inner { background: #000; color: oklch(.95 .012 85); }
+.mockup-slide .slide-inner { display: flex; flex-direction: column; align-items: center; padding-top: clamp(1.3rem, 5vh, 4rem); padding-bottom: clamp(3.5rem, 9vh, 6rem); }
+.mockup-copy { width: 100%; text-align: center; }
+.mockup-copy .section-headline { margin: .4rem auto 0; max-width: 22ch; }
+.mockup-stage { flex: 1; min-height: 0; width: 100%; margin: clamp(.75rem, 3vh, 2rem) 0; display: grid; place-items: center; }
+.mockup-video { display: block; width: auto; height: auto; max-width: 100%; max-height: 62vh; max-height: 62dvh; background: #000; }
+.mockup-note { margin: 0; max-width: 46ch; text-align: center; font-size: clamp(.6rem, .85vw, .78rem); line-height: 1.35; opacity: .45; }
+
 .audience-slide .slide-inner, .collab-slide .slide-inner, .drinker-slide .slide-inner { display: flex; flex-direction: column; padding-top: clamp(1.3rem, 5vh, 4rem); }
 .clean-list { flex: 1; min-height: 0; margin: clamp(.75rem, 3vh, 2rem) 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; justify-content: center; }
 .clean-list li { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto auto; column-gap: clamp(.75rem, 2vw, 1.6rem); align-items: center; padding: clamp(.6rem, 2vh, 1.4rem) 0; border-bottom: 1px solid color-mix(in oklch, var(--foreground) 20%, transparent); }
@@ -282,6 +293,8 @@ button { color: inherit; }
   .keywords span { display: block; font-size: min(5.2vh, 8.6vw); line-height: .9; }
   .routes-grid { grid-template-columns: 1fr; gap: 1.75rem; align-content: center; }
   .trend-list { grid-template-columns: 1fr; gap: 1.1rem; }
+  .mockup-video { max-height: 48vh; max-height: 48dvh; }
+  .mockup-note { font-size: .62rem; max-width: none; }
   .trend-list h2 { font-size: clamp(1.15rem, 6vw, 1.8rem); }
   .trend-list p { font-size: .8rem; }
   .video-sub { font-size: .92rem; }
