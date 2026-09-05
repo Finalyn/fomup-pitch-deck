@@ -4,14 +4,22 @@ import { useEffect, useRef, useState } from "react";
 // the deck, so nothing is fetched until the slide is actually reached.
 type Props = { active: boolean };
 
-const CAP_NODE = "Capuchon transparent amovible";
+// GLTFLoader renames every node as it loads: whitespace becomes underscores and
+// a handful of characters are dropped. Names written the way Blender shows them
+// match nothing once loaded, which is why the cap could not be found. Both sides
+// go through the same transform here.
+const slug = (name: string) => name.replace(/\s/g, "_").replace(/[[\].:/]/g, "");
+
+const CAP_NODE = slug("Capuchon transparent amovible");
 // The export also carries the pouring animation: a hundred foam cells, the
 // liquid ribbon and the foam sitting in the cap. None of it belongs in a still
 // turntable, and left visible it floats beside the bottle.
 // "Flacon | ..." is deliberately absent: it looks like animation scaffolding but
 // it is the parent of the body, the collar and the whole pump, so hiding it
 // takes the bottle with it.
-const HIDDEN = ["Cellule fine", "Microbulles", "Ruban de liquide", "Capuchon | remplissage"];
+const HIDDEN = ["Cellule fine", "Microbulles", "Ruban de liquide", "Capuchon | remplissage"].map(
+  slug,
+);
 const isHidden = (name: string) => HIDDEN.some((prefix) => name.startsWith(prefix));
 
 const BACKDROPS = [
@@ -84,6 +92,8 @@ export function BottleViewer({ active }: Props) {
       controls.dampingFactor = 0.08;
       controls.enablePan = false;
       controls.rotateSpeed = 0.85;
+      // Dolly towards whatever is under the pointer rather than the centre.
+      controls.zoomToCursor = true;
       controls.autoRotate = true;
       controls.autoRotateSpeed = 0.9;
       controls.addEventListener("start", () => {
@@ -100,7 +110,12 @@ export function BottleViewer({ active }: Props) {
           model.traverse((child) => {
             if (isHidden(child.name)) child.visible = false;
           });
-          const cap = model.getObjectByName(CAP_NODE);
+          // Matched by prefix rather than exact name: the loader appends a
+          // counter when two nodes sanitise to the same string.
+          let cap: InstanceType<typeof THREE.Object3D> | undefined;
+          model.traverse((child) => {
+            if (!cap && child.name.startsWith(CAP_NODE)) cap = child;
+          });
           capRef.current = {
             show: (on) => {
               if (cap) cap.visible = on;

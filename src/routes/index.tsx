@@ -303,6 +303,12 @@ function PitchDeck() {
       className={`deck${DARK_SLIDES.has(active) ? " deck-inverted" : ""}${BARE_SLIDES.has(active) ? " deck-bare" : ""}`}
       aria-label="FOMUP pitch deck"
       onTouchStart={(event) => {
+        // A drag inside the 3D viewer turns the bottle. Letting it also count as
+        // a swipe would send the deck to the next slide mid-rotation.
+        if ((event.target as HTMLElement).closest(".viewer-stage")) {
+          touchStart.current = null;
+          return;
+        }
         touchStart.current = event.touches[0]?.clientX ?? null;
       }}
       onTouchEnd={(event) => {
