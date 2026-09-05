@@ -24,9 +24,25 @@ export function BottleViewer({ active }: Props) {
   const [status, setStatus] = useState<"idle" | "loading" | "ready" | "failed">("idle");
   const [capOn, setCapOn] = useState(true);
   const [backdrop, setBackdrop] = useState<string>(BACKDROPS[0].key);
+  // The scene is built once. status and backdrop must stay out of the effect's
+  // dependencies: setting status inside it would retrigger the effect, and the
+  // cleanup would tear the renderer down before the model finished loading.
+  const started = useRef(false);
+  const backdropRef = useRef(backdrop);
+  backdropRef.current = backdrop;
+  // Latches on the first visit and never goes back, so leaving the slide cannot
+  // trigger the cleanup and leave an empty canvas on the way back.
+  const [armed, setArmed] = useState(false);
+  const activeRef = useRef(active);
+  activeRef.current = active;
 
   useEffect(() => {
-    if (!active || status !== "idle" || !holder.current) return;
+    if (active) setArmed(true);
+  }, [active]);
+
+  useEffect(() => {
+    if (!armed || started.current || !holder.current) return;
+    started.current = true;
     const mount = holder.current;
     setStatus("loading");
     let disposed = false;
@@ -47,7 +63,7 @@ export function BottleViewer({ active }: Props) {
       mount.appendChild(renderer.domElement);
 
       const scene = new THREE.Scene();
-      const startColor = BACKDROPS.find((b) => b.key === backdrop)?.color ?? "#f5f1e8";
+      const startColor = BACKDROPS.find((b) => b.key === backdropRef.current)?.color ?? "#f5f1e8";
       scene.background = new THREE.Color(startColor);
       bgRef.current = (hex) => {
         (scene.background as InstanceType<typeof THREE.Color>).set(hex);
@@ -129,6 +145,8 @@ export function BottleViewer({ active }: Props) {
 
       const tick = () => {
         frame = requestAnimationFrame(tick);
+        // No point burning a GPU frame on a slide nobody is looking at.
+        if (!activeRef.current) return;
         controls.update();
         renderer.render(scene, camera);
       };
@@ -148,7 +166,7 @@ export function BottleViewer({ active }: Props) {
       disposed = true;
       cleanup?.();
     };
-  }, [active, status, backdrop]);
+  }, [armed]);
 
   return (
     <div className="viewer">
