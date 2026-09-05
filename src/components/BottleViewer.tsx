@@ -8,7 +8,11 @@ const CAP_NODE = "Capuchon transparent amovible";
 // The export also carries the pouring animation: a hundred foam cells, the
 // liquid ribbon and the foam sitting in the cap. None of it belongs in a still
 // turntable, and left visible it floats beside the bottle.
-const HIDDEN = /^(Cellule fine|Microbulles|Ruban de liquide|Capuchon | remplissage|Flacon |)/;
+// "Flacon | ..." is deliberately absent: it looks like animation scaffolding but
+// it is the parent of the body, the collar and the whole pump, so hiding it
+// takes the bottle with it.
+const HIDDEN = ["Cellule fine", "Microbulles", "Ruban de liquide", "Capuchon | remplissage"];
+const isHidden = (name: string) => HIDDEN.some((prefix) => name.startsWith(prefix));
 
 const BACKDROPS = [
   { key: "cream", label: "Cream", color: "#f5f1e8" },
@@ -94,7 +98,7 @@ export function BottleViewer({ active }: Props) {
           if (disposed) return;
           const model = gltf.scene;
           model.traverse((child) => {
-            if (HIDDEN.test(child.name)) child.visible = false;
+            if (isHidden(child.name)) child.visible = false;
           });
           const cap = model.getObjectByName(CAP_NODE);
           capRef.current = {
@@ -106,11 +110,18 @@ export function BottleViewer({ active }: Props) {
           // Frame the bottle from its own bounds rather than guessing a camera
           // distance: the export's scale is in Blender units, not metres.
           // Bounds are taken from the bottle alone, with the hidden foam left out,
-          // otherwise the framing accounts for geometry nobody can see.
+          // otherwise the framing accounts for geometry nobody can see. A mesh
+          // keeps visible true even when an ancestor is hidden, so the whole
+          // chain has to be checked.
+          const shown = (obj: InstanceType<typeof THREE.Object3D>) => {
+            for (let o: typeof obj | null = obj; o; o = o.parent) if (!o.visible) return false;
+            return true;
+          };
           const box = new THREE.Box3();
+          model.updateWorldMatrix(true, true);
           model.traverse((child) => {
             const mesh = child as InstanceType<typeof THREE.Mesh>;
-            if (mesh.isMesh && child.visible) box.expandByObject(child);
+            if (mesh.isMesh && shown(child)) box.expandByObject(child);
           });
           const size = box.getSize(new THREE.Vector3());
           const center = box.getCenter(new THREE.Vector3());
